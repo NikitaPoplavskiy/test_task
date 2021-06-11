@@ -104,21 +104,11 @@ echo $res_string;
 // returns user name, role description and permission description
 function getUserInfo($arr_decoded, $user_id) {
 
-    foreach ($arr_decoded['users'] as $item_name) {
-        if ($item_name['id'] == $user_id) {
-            $name = $item_name['name'];
-        }
-    }
-
-    foreach ($arr_decoded['users'] as $item_role) {
-        if ($item_role['id'] == $user_id) {
-            $role = getUserRoleDesc($arr_decoded, $item_role['role']);
-        }
-    }
-
-    foreach ($arr_decoded['users'] as $item_role) {
-        if ($item_role['id'] == $user_id) {
-            $permission = getUserPermissionDesc($arr_decoded, $item_role['permissions']);
+    foreach ($arr_decoded['users'] as $user) {
+        if ($user['id'] == $user_id) {
+            $name = $user['name'];
+            $role = getUserRoleDesc($arr_decoded, $user['role']);
+            $permission = getUserPermissionDesc($arr_decoded, $user['permissions']);
         }
     }
 
